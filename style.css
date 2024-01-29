@@ -1,0 +1,49 @@
+h1 {
+  background-image: radial-gradient( circle farthest-corner at 10% 20%, #f093fb 0%, #f5576c 100% );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 5em;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+h2 {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#svelte-heading {
+  color: #E63900;
+}
+
+#react-heading {
+  color: #0098B3;
+}
+
+#vue-heading {
+  color: #3AA676;
+}
+
+#solid-heading {
+  color: #2C4F7D;
+}
+
+#vanilla-heading {
+  color: #000;
+}
+
+.playground {
+  max-width: 800px;
+  margin: auto;
+}
+
+.link-container {
+  text-align: center;
+  padding: 1em;
+  margin-bottom: 3em;
+}
+
+a {
+  color: rgb(0, 55, 255);
+}
