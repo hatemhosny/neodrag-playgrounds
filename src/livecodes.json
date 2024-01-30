@@ -1,9 +1,11 @@
 {
   "title": "Neodrag",
   "description": "",
-  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<meta name=\"title\" content=\"Neodrag - LiveCodes\" />\n<meta name=\"description\" content=\"A project on LiveCodes.\" />\n\n<meta property=\"twitter:title\" content=\"Neodrag - LiveCodes\" />\n<meta property=\"twitter:description\" content=\"A project on LiveCodes.\" />\n<meta property=\"twitter:image\" content=\"https://livecodes.io/livecodes/assets/images/livecodes-text-logo.png\" />\n<meta property=\"twitter:url\" content=\"https://livecodes.io/?config=https://raw.githubusercontent.com/hatemhosny/neodrag-playgrounds/gh-pages/src/livecodes.json\" />\n<meta property=\"twitter:card\" content=\"summary_large_image\" />\n\n<meta property=\"og:title\" content=\"Neodrag - LiveCodes\" />\n<meta property=\"og:description\" content=\"A project on LiveCodes.\" />\n<meta property=\"og:url\" content=\"https://livecodes.io/?config=https://raw.githubusercontent.com/hatemhosny/neodrag-playgrounds/gh-pages/src/livecodes.json\" />\n<meta property=\"og:image\" content=\"https://livecodes.io/livecodes/assets/images/livecodes-text-logo.png\" />\n<meta property=\"og:type\" content=\"website\" />",
   "htmlAttrs": "lang=\"en\" class=\"\"",
-  "tags": [],
+  "tags": [
+    ""
+  ],
   "activeEditor": "script",
   "markup": {
     "language": "html",
