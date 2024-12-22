@@ -1,10 +1,21 @@
-import { createPlayground, getPlaygroundUrl } from "livecodes";
-const svelteConfig = {
-    title: "@neodrag/svelte",
-    activeEditor: "script",
-    script: {
-        language: "svelte",
-        content: `
+import { createPlayground, getPlaygroundUrl } from 'livecodes';
+const configs = {
+    svelte: {
+        title: '@neodrag/svelte',
+        theme: 'light',
+        themeColor: '#FBE0D8',
+        activeEditor: 'script',
+        markup: {
+            language: 'html',
+            content: '',
+        },
+        style: {
+            language: 'css',
+            content: '',
+        },
+        script: {
+            language: 'svelte',
+            content: `
 <script>
   import { draggable } from '@neodrag/svelte';
 </script>
@@ -25,17 +36,20 @@ const svelteConfig = {
   }
 </style>    
 `.trimStart(),
+        },
     },
-};
-createPlayground("#svelte-playground", { config: svelteConfig });
-document.querySelector("#svelte-link").href =
-    getPlaygroundUrl({ config: svelteConfig });
-const reactConfig = {
-    title: "@neodrag/react",
-    activeEditor: "script",
-    style: {
-        language: 'css',
-        content: `
+    react: {
+        title: '@neodrag/react',
+        theme: 'light',
+        themeColor: '#BFE2E7',
+        activeEditor: 'script',
+        markup: {
+            language: 'html',
+            content: '',
+        },
+        style: {
+            language: 'css',
+            content: `
 .box {
   height: 100px;
   width: 100px;
@@ -48,10 +62,10 @@ const reactConfig = {
   cursor: move;
 }
 `.trimStart(),
-    },
-    script: {
-        language: "jsx",
-        content: `
+        },
+        script: {
+            language: 'react',
+            content: `
 import { useRef } from 'react';
 import { useDraggable } from '@neodrag/react';
 
@@ -62,17 +76,24 @@ export default function App() {
   return <div ref={draggableRef} className="box">Drag me!</div>;
 }
 `.trimStart(),
+        },
     },
-};
-createPlayground("#react-playground", { config: reactConfig });
-document.querySelector("#react-link").href =
-    getPlaygroundUrl({ config: reactConfig });
-const vueConfig = {
-    title: "@neodrag/vue",
-    activeEditor: "script",
-    script: {
-        language: "vue",
-        content: `
+    vue: {
+        title: '@neodrag/vue',
+        activeEditor: 'script',
+        theme: 'light',
+        themeColor: '#D2EBE0',
+        markup: {
+            language: 'html',
+            content: '',
+        },
+        style: {
+            language: 'css',
+            content: '',
+        },
+        script: {
+            language: 'vue',
+            content: `
 <script setup>
 import { vDraggable } from '@neodrag/vue';
 </script>
@@ -95,17 +116,20 @@ import { vDraggable } from '@neodrag/vue';
   }
 </style>
 `.trimStart(),
+        },
     },
-};
-createPlayground("#vue-playground", { config: vueConfig });
-document.querySelector("#vue-link").href =
-    getPlaygroundUrl({ config: vueConfig });
-const solidConfig = {
-    title: "@neodrag/solid",
-    activeEditor: "script",
-    style: {
-        language: 'css',
-        content: `
+    solid: {
+        title: '@neodrag/solid',
+        theme: 'light',
+        themeColor: '#BDC8D7',
+        activeEditor: 'script',
+        markup: {
+            language: 'html',
+            content: '',
+        },
+        style: {
+            language: 'css',
+            content: `
 .box {
   height: 100px;
   width: 100px;
@@ -118,10 +142,10 @@ const solidConfig = {
   cursor: move;
 }
 `.trimStart(),
-    },
-    script: {
-        language: "solid.tsx",
-        content: `
+        },
+        script: {
+            language: 'solid.tsx',
+            content: `
 import type { Component } from 'solid-js';
 import { createDraggable } from '@neodrag/solid';
 
@@ -133,21 +157,20 @@ const App: Component = () => {
 
 export default App;
 `.trimStart(),
+        },
     },
-};
-createPlayground("#solid-playground", { config: solidConfig });
-document.querySelector("#solid-link").href =
-    getPlaygroundUrl({ config: solidConfig });
-const vanillaConfig = {
-    title: "@neodrag/vanilla",
-    activeEditor: "script",
-    markup: {
-        language: 'html',
-        content: `<div id="drag" class="box">Drag me!</div>`
-    },
-    style: {
-        language: 'css',
-        content: `
+    vanilla: {
+        title: '@neodrag/vanilla',
+        theme: 'light',
+        themeColor: '#FCF5C0',
+        activeEditor: 'script',
+        markup: {
+            language: 'html',
+            content: `<div id="drag" class="box">Drag me!</div>`,
+        },
+        style: {
+            language: 'css',
+            content: `
 .box {
   height: 100px;
   width: 100px;
@@ -160,16 +183,33 @@ const vanillaConfig = {
   cursor: move;
 }
 `.trimStart(),
-    },
-    script: {
-        language: "javascript",
-        content: `
+        },
+        script: {
+            language: 'javascript',
+            content: `
 import { Draggable } from '@neodrag/vanilla';
 
 const dragInstance = new Draggable(document.querySelector('#drag'));
 `.trimStart(),
+        },
     },
 };
-createPlayground("#vanilla-playground", { config: vanillaConfig });
-document.querySelector("#vanilla-link").href =
-    getPlaygroundUrl({ config: vanillaConfig });
+const playground = await createPlayground('#playground', {
+    config: configs.svelte,
+});
+const playgroundLink = document.querySelector('#playground-link');
+playgroundLink.href = getPlaygroundUrl({ config: configs.svelte });
+document.querySelectorAll('#tabs a').forEach((link) => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (link.classList.contains('active'))
+            return;
+        document
+            .querySelectorAll('#tabs a')
+            .forEach((tab) => tab.classList.remove('active'));
+        link.classList.add('active');
+        const config = configs[link.dataset.lib];
+        playground.setConfig(config);
+        playgroundLink.href = getPlaygroundUrl({ config });
+    });
+});
