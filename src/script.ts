@@ -67,6 +67,9 @@ const configs: Record<string, Partial<Config>> = {
     },
     script: {
       language: 'react',
+      // This uses the new React compiler
+      // if you want to disbale it use:
+      // language: 'jsx',
       content: `
 import { useRef } from 'react';
 import { useDraggable } from '@neodrag/react';
